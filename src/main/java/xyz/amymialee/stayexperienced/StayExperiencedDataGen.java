@@ -9,6 +9,6 @@ public class StayExperiencedDataGen extends MDataGen {
     @Override
     protected void generateTranslations(MLanguageProvider provider, RegistryWrapper.WrapperLookup registryLookup, FabricLanguageProvider.@NotNull TranslationBuilder builder) {
         builder.add(StayExperienced.EXPERIENCE_RETAINED.getTranslationKey(), "Experience Retained");
-        builder.add(StayExperienced.EXPERIENCE_RETAINED.getDescriptionTranslationKey(), "The amount of experience retained after death");
+        builder.add(StayExperienced.EXPERIENCE_RETAINED.getDescriptionTranslationKey(), "The amount of experience preserved after death");
     }
 }
