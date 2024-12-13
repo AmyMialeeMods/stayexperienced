@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "id": "stayexperienced",
+  "version": "${version}",
+
+  "name": "Stay Experienced",
+  "description": "Have less experience destroyed on death",
+  "authors": [
+    "AmyMialee"
+  ],
+  "contact": {
+    "email": "stayexperienced@amymialee.xyz",
+    "homepage": "https://amymialee.xyz",
+    "irc": "",
+    "sources": "https://github.com/AmyMialeeMods/stayexperienced",
+    "issues": "https://github.com/AmyMialeeMods/stayexperienced/issues"
+  },
+  "license": "All-Rights-Reserved",
+  "icon": "assets/stayexperienced/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "xyz.amymialee.stayexperienced.StayExperienced"
+    ],
+    "fabric-datagen": [
+      "xyz.amymialee.stayexperienced.StayExperiencedDataGen"
+    ]
+  },
+  "mixins": [
+    "stayexperienced.mixins.json"
+  ],
+
+  "depends": {
+    "fabric": "*"
+  },
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/stayexperienced",
+        "modmenu.discord": "https://discord.amymialee.xyz",
+        "modmenu.kofi": "https://ko-fi.com/amymialee",
+        "modmenu.modrinth": "https://modrinth.com/project/stayexperienced",
+        "modmenu.twitter": "https://x.com/amy_mialee",
+        "modmenu.wiki": "https://modrinth.com/project/stayexperienced"
+      },
+      "update_checker": true
+    }
+  }
+}
