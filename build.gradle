@@ -1,7 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.9-SNAPSHOT'
     id 'maven-publish'
-    id "me.modmuss50.mod-publish-plugin" version "0.7.4"
+    id "me.modmuss50.mod-publish-plugin" version "0.8.2"
 }
 
 base {
@@ -32,10 +32,10 @@ dependencies {
 publishMods {
     file = remapJar.archiveFile
     additionalFiles.files.add(remapSourcesJar.archiveFile.get().getAsFile())
-    displayName = "${project.version.toString().split("\\+")[0]} for Fabric $minecraft_version"
+    displayName = "${project.version.toString().split("\\+")[0]} for $minecraft_version"
     changelog = new File("CHANGELOG.md").text
     type = STABLE
-    modLoaders.addAll("fabric", "quilt")
+    modLoaders.addAll("fabric", "quilt", "neoforge")
     dryRun = !providers.gradleProperty("curseforge_api_key").isPresent() || !providers.gradleProperty("modrinth_api_key").isPresent() || !providers.gradleProperty("discord_webhook").isPresent()
     curseforge {
         accessToken = providers.gradleProperty('curseforge_api_key')
@@ -46,8 +46,8 @@ publishMods {
         }
         announcementTitle = "Download from CurseForge"
         javaVersions.addAll(JavaVersion.VERSION_21, JavaVersion.VERSION_22)
-        clientRequired = true;
-        serverRequired = true;
+        clientRequired = true
+        serverRequired = true
         projectSlug = curseforge_slug
         requires("fabric-api")
         embeds("cardinal-components-api")
@@ -65,10 +65,17 @@ publishMods {
         embeds("cardinal-components-api")
     }
     discord {
+        style {
+            look = "MODERN"
+            thumbnailUrl = "https://cdn.modrinth.com/data/ajdfGxGU/icon.png"
+            color = "#FF0033"
+            link = "BUTTON"
+        }
         webhookUrl = providers.gradleProperty("discord_webhook")
         dryRunWebhookUrl = providers.gradleProperty("discord_webhook")
         username = "Abee"
         avatarUrl = "https://cdn.discordapp.com/emojis/1006355140657299528.gif?quality=lossless"
+        content = changelog.map { "# Stay Experienced\n" + it}
         setPlatforms(publishMods.platforms.modrinth, publishMods.platforms.curseforge)
     }
 }
@@ -82,18 +89,10 @@ fabricApi {
 
 processResources {
     inputs.property "version", project.version
-    inputs.property "fabric_version", project.fabric_version
-    inputs.property "loader_version", project.loader_version
-    inputs.property "minecraft_version", project.minecraft_version
-    inputs.property "modmenu_version", project.modmenu_version
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version,
-                "fabric_version": project.fabric_version,
-                "loader_version": project.loader_version,
-                "minecraft_version": project.minecraft_version,
-                "modmenu_version": project.modmenu_version
+        expand "version": project.version
     }
 }
 

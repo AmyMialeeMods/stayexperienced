@@ -1,0 +1,27 @@
+modLoader="javafml"
+loaderVersion="*"
+license="ARR"
+
+[properties]
+"connector:placeholder"=true
+
+[[mods]]
+modId="stayexperienced"
+version="1.0.0"
+displayName="Stay Experienced"
+authors="AmyMialee"
+description='''Preserve more Experience on Death'''
+
+[[dependencies.stayexperienced]]
+modId="minecraft"
+mandatory=true
+versionRange="*"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.stayexperienced]]
+modId="connector"
+mandatory=true
+versionRange="*"
+ordering="NONE"
+side="BOTH"
